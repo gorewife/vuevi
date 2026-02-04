@@ -32,13 +32,17 @@ function handleClose() {
   position: absolute;
   top: 50px;
   left: 50px;
-  width: 300px;
+  width: auto;          /* auto width */
+  max-width: 90vw;      /* optional: prevent it from going off-screen */
+  min-width: 200px;     /* optional: don't get too small */
+  padding: 2px;
   border: 2px solid #000080;
   background: var(--window);
-  padding: 2px;
   box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #888;
   font-family: 'VT323', monospace;
+  display: inline-block; /* shrink-to-fit content */
 }
+
 
 .win-titlebar {
   height: 26px;
