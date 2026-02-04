@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+
 import DesktopIcon from './components/DesktopIcon.vue'
-import AppWindow from './components/AppWindow.vue'
+import AboutMeApp from './components/AboutMeApp.vue'
+import GalleryApp from './components/GalleryApp.vue'
+import SocialsApp from './components/SocialsApp.vue'
 
 import heartIcon from './assets/heart.png'
 import paperIcon from './assets/paper.png'
 import chessIcon from './assets/chess.png'
 
 const openApps = ref({
-  home: false,
-  cosplays: false,
-  links: false
+  aboutMe: false,
+  gallery: false,
+  socials: false
 })
 
 function open(app: keyof typeof openApps.value) {
@@ -25,21 +28,29 @@ function close(app: keyof typeof openApps.value) {
 <template>
   <div class="desktop">
     <!-- Desktop Icons -->
-    <DesktopIcon label="Home" :icon="heartIcon" @open="open('home')" />
-    <DesktopIcon label="Cosplays" :icon="paperIcon" @open="open('cosplays')" />
-    <DesktopIcon label="Links" :icon="chessIcon" @open="open('links')" />
+    <DesktopIcon label="About Me" :icon="heartIcon" @open="open('aboutMe')" />
+    <DesktopIcon label="Gallery" :icon="paperIcon" @open="open('gallery')" />
+    <DesktopIcon label="Socials" :icon="chessIcon" @open="open('socials')" />
 
-    <!-- Windows -->
-    <Transition name="win-fade">
-      <AppWindow v-if="openApps.home" title="HOME.EXE" @close="close('home')" />
+    <Transition name="win-pop">
+      <AboutMeApp v-if="openApps.aboutMe"
+      @close="close('aboutMe')"
+      :style="{ top: 'calc(50% - 150px)', left: 'calc(50% - 200px)' }"
+       />
     </Transition>
 
-    <Transition name="win-fade">
-      <AppWindow v-if="openApps.cosplays" title="COSPLAYS.EXE" @close="close('cosplays')" />
+    <Transition name="win-pop">
+      <GalleryApp v-if="openApps.gallery"
+      @close="close('gallery')"
+      :style="{ top: '100px', left: '80px' }"
+      />
     </Transition>
 
-    <Transition name="win-fade">
-      <AppWindow v-if="openApps.links" title="LINKS.EXE" @close="close('links')" />
+    <Transition name="win-pop">
+      <SocialsApp v-if="openApps.socials"
+      @close="close('socials')"
+      :style="{ top: '120px', left: 'calc(100% - 320px)' }"
+      />
     </Transition>
   </div>
 </template>
@@ -57,37 +68,43 @@ function close(app: keyof typeof openApps.value) {
 /* Desktop grid */
 .desktop {
   display: grid;
-  grid-template-columns: repeat(5, 80px); /* 5 columns for 5:4 feel */
+  grid-template-columns: repeat(5, 80px);
   grid-auto-rows: 80px;
   gap: 1rem;
   padding: 1rem;
 
-  /* Constrain the desktop size */
-  width: 400px;  /* 5 cols * 80px */
-  height: 320px; /* 4 rows * 80px */
-  
-  margin: 2rem auto; /* center horizontally */
+  aspect-ratio: 5 / 4 ;
+  width: 90vw; 
+  max-width: calc(80vh * 5 / 4);
+
+  margin: 2rem auto;
   background: var(--bg);
   color: var(--text);
   font-family: 'VT323', monospace;
   overflow: hidden;
-  border: 2px solid #8087f0; /* optional frame */
+  border: 2px solid #8087f0;
 }
 
 /* Window animation */
-.win-fade-enter-active,
-.win-fade-leave-active {
-  transition: all 0.3s ease;
+.win-pop-enter-active {
+  transition: transform 0.15s ease-out;
 }
-.win-fade-enter-from,
-.win-fade-leave-to {
-  opacity: 0;
-  transform: scale(0.8);
+.win-pop-leave-active {
+  transition: transform 0.15s ease-in;
 }
-.win-fade-enter-to,
-.win-fade-leave-from {
-  opacity: 1;
-  transform: scale(1);
+
+.win-pop-enter-from {
+  transform: scale(0) translate(var(--icon-x, 0), var(--icon-y, 0));
+}
+.win-pop-enter-to {
+  transform: scale(1) translate(0, 0);
+}
+
+.win-pop-leave-from {
+  transform: scale(1) translate(0, 0);
+}
+.win-pop-leave-to {
+  transform: scale(0) translate(var(--icon-x, 0), var(--icon-y, 0));
 }
 
 /* Optional CRT scanlines */
