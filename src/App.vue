@@ -65,7 +65,6 @@ function close(app: keyof typeof openApps.value) {
   --text: #000;
 }
 
-/* Desktop grid */
 .desktop {
   display: grid;
   grid-template-columns: repeat(5, 80px);
@@ -73,12 +72,17 @@ function close(app: keyof typeof openApps.value) {
   gap: 1rem;
   padding: 1rem;
 
-  aspect-ratio: 5 / 4 ;
+  aspect-ratio: 5 / 4;
   width: 90vw; 
   max-width: calc(80vh * 5 / 4);
 
-  margin: 2rem auto;
-  background: var(--bg);
+  margin: 4rem auto;
+
+  background-image: url('./assets/wallpaper.png'); 
+  background-size: cover;        
+  background-position: center;   
+  background-repeat: no-repeat;  
+
   color: var(--text);
   font-family: 'VT323', monospace;
   overflow: hidden;
