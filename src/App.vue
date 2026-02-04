@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 
 import DesktopIcon from './components/DesktopIcon.vue'
 import AboutMeApp from './components/AboutMeApp.vue'
@@ -10,11 +10,18 @@ import heartIcon from './assets/heart.png'
 import paperIcon from './assets/paper.png'
 import chessIcon from './assets/chess.png'
 
+// Boot screen state
+const booting = ref(true)
+
+// Apps open state
 const openApps = ref({
   aboutMe: false,
   gallery: false,
   socials: false
 })
+
+// Helper array to control when animations trigger
+const appsToOpen = ref<(keyof typeof openApps.value)[]>([])
 
 function open(app: keyof typeof openApps.value) {
   openApps.value[app] = true
@@ -23,33 +30,64 @@ function open(app: keyof typeof openApps.value) {
 function close(app: keyof typeof openApps.value) {
   openApps.value[app] = false
 }
+
+// Simulate boot sequence
+onMounted(() => {
+  setTimeout(async () => {
+    booting.value = false      // hide boot screen
+    await nextTick()           // wait for DOM to update
+
+    // Open all apps after boot with optional stagger
+    const apps: (keyof typeof openApps.value)[] = ['aboutMe', 'gallery', 'socials']
+    appsToOpen.value = apps
+
+    apps.forEach((app, i) => {
+      setTimeout(() => {
+        openApps.value[app] = true
+      }, i * 150) // 150ms stagger between windows
+    })
+  }, 2500) // boot screen duration
+})
 </script>
 
 <template>
-  <div class="desktop">
+  <!-- Boot screen -->
+  <div v-if="booting" class="boot-screen">
+    <pre class="boot-text">
+Starting Windows 98...
+C:\WINDOWS\>_
+    </pre>
+  </div>
+
+  <!-- Desktop + windows -->
+  <div v-else class="desktop">
     <!-- Desktop Icons -->
     <DesktopIcon label="About Me" :icon="heartIcon" @open="open('aboutMe')" />
     <DesktopIcon label="Gallery" :icon="paperIcon" @open="open('gallery')" />
     <DesktopIcon label="Socials" :icon="chessIcon" @open="open('socials')" />
 
+    <!-- Windows with transition -->
     <Transition name="win-pop">
-      <AboutMeApp v-if="openApps.aboutMe"
-      @close="close('aboutMe')"
-      :style="{ top: 'calc(50% - 150px)', left: 'calc(50% - 200px)' }"
-       />
-    </Transition>
-
-    <Transition name="win-pop">
-      <GalleryApp v-if="openApps.gallery"
-      @close="close('gallery')"
-      :style="{ top: '100px', left: '80px' }"
+      <AboutMeApp 
+        v-if="openApps.aboutMe && appsToOpen.includes('aboutMe')" 
+        @close="close('aboutMe')" 
+        :style="{ top: 'calc(50% - 150px)', left: 'calc(50% - 200px)' }" 
       />
     </Transition>
 
     <Transition name="win-pop">
-      <SocialsApp v-if="openApps.socials"
-      @close="close('socials')"
-      :style="{ top: '120px', left: 'calc(100% - 320px)' }"
+      <GalleryApp 
+        v-if="openApps.gallery && appsToOpen.includes('gallery')" 
+        @close="close('gallery')" 
+        :style="{ top: '100px', left: '80px' }" 
+      />
+    </Transition>
+
+    <Transition name="win-pop">
+      <SocialsApp 
+        v-if="openApps.socials && appsToOpen.includes('socials')" 
+        @close="close('socials')" 
+        :style="{ top: '120px', left: 'calc(100% - 320px)' }" 
       />
     </Transition>
   </div>
@@ -111,6 +149,31 @@ function close(app: keyof typeof openApps.value) {
   transform: scale(0) translate(var(--icon-x, 0), var(--icon-y, 0));
 }
 
+/* Boot screen */
+.boot-screen {
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: #0f0;
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+.boot-text::after {
+  content: "_";
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
 body::after {
   content: "";
   pointer-events: none;
@@ -125,5 +188,3 @@ body::after {
   );
 }
 </style>
-
-
