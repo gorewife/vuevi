@@ -8,15 +8,14 @@ import heartIcon from '../assets/heart.png'
   <AppWindow title="ABOUTME.EXE"
   :icon="heartIcon"
   @close="$emit('close')"
-  >
-    <h1 data-text="ABOUT ME">ABOUT ME</h1>
+  > 
     <img
     src="../assets/vivi.gif"
     alt="pfp"
     >
-    <p>Lorem, ipsum dolor sit amet consectetur</p>
-    <p>Voluptate, perferendis dolores adipisci sequi </p>
-    <p>repellendus accusantium ad inventore fuga sunt consequatur</p>
+    <p>hiiii</p>
+    <p>hahaa</p>
+    <p>whadup yo</p>
   </AppWindow>
 </template>
 

@@ -71,7 +71,7 @@ C:\WINDOWS\>_
       <AboutMeApp 
         v-if="openApps.aboutMe && appsToOpen.includes('aboutMe')" 
         @close="close('aboutMe')" 
-        :style="{ top: 'calc(50% - 150px)', left: 'calc(50% - 200px)' }" 
+        :style="{ top: 'calc(50% - 150px)', left: '800px' }" 
       />
     </Transition>
 
@@ -79,7 +79,7 @@ C:\WINDOWS\>_
       <GalleryApp 
         v-if="openApps.gallery && appsToOpen.includes('gallery')" 
         @close="close('gallery')" 
-        :style="{ top: '100px', left: '80px' }" 
+        :style="{ top: '200px', left: '300px' }" 
       />
     </Transition>
 
@@ -87,7 +87,7 @@ C:\WINDOWS\>_
       <SocialsApp 
         v-if="openApps.socials && appsToOpen.includes('socials')" 
         @close="close('socials')" 
-        :style="{ top: '120px', left: 'calc(100% - 320px)' }" 
+        :style="{ top: '120px', left: '900px' }" 
       />
     </Transition>
   </div>

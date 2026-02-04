@@ -4,6 +4,7 @@ import AppWindow from './AppWindow.vue'
 import TikTokIcon from '../assets/tiktok.png'
 import TwitterIcon from '../assets/twitter.png'
 import InstagramIcon from '../assets/instagram.png'
+import PatreonIcon from '../assets/patreon.png'
 </script>
 
 <template>
@@ -17,6 +18,9 @@ import InstagramIcon from '../assets/instagram.png'
       </a>
       <a href="https://instagram.com/cradlemybody" target="_blank">
         <img :src="InstagramIcon" alt="Instagram" class="social-icon" />
+      </a>
+      <a href="https://www.patreon.com/cw/cradlemybody" target="_blank">
+        <img :src="PatreonIcon" alt="Patreon" class="social-icon" />
       </a>
     </div>
   </AppWindow>
