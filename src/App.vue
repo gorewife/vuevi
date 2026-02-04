@@ -30,17 +30,23 @@ function close(app: keyof typeof openApps.value) {
     <DesktopIcon label="Links" :icon="chessIcon" @open="open('links')" />
 
     <!-- Windows -->
-    <AppWindow v-if="openApps.home" title="HOME.EXE" @close="close('home')" :style="{ top: '60px', left: '80px' }">
-      <p>Home App Content</p>
-    </AppWindow>
+    <Transition name="win-fade">
+      <AppWindow v-if="openApps.home" title="HOME.EXE" @close="close('home')">
+        <p>Home App Content</p>
+      </AppWindow>
+    </Transition>
 
-    <AppWindow v-if="openApps.cosplays" title="COSPLAYS.EXE" @close="close('cosplays')" :style="{ top: '100px', left: '220px' }">
-      <p>Cosplays App Content</p>
-    </AppWindow>
+    <Transition name="win-fade">
+      <AppWindow v-if="openApps.cosplays" title="COSPLAYS.EXE" @close="close('cosplays')">
+        <p>Cosplays App Content</p>
+      </AppWindow>
+    </Transition>
 
-    <AppWindow v-if="openApps.links" title="LINKS.EXE" @close="close('links')" :style="{ top: '140px', left: '360px' }">
-      <p>Links App Content</p>
-    </AppWindow>
+    <Transition name="win-fade">
+      <AppWindow v-if="openApps.links" title="LINKS.EXE" @close="close('links')">
+        <p>Links App Content</p>
+      </AppWindow>
+    </Transition>
   </div>
 </template>
 
@@ -57,12 +63,14 @@ function close(app: keyof typeof openApps.value) {
 /* Desktop */
 .desktop {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 80px); /* each icon box is 80px wide */
-  grid-auto-rows: 80px; /* row height matches icon box */
-  gap: 1rem; /* space between icons */
+  grid-template-columns: repeat(auto-fill, 100px);
+  grid-auto-rows: 100px;                            
+  gap: 1rem;                                       
   padding: 1rem;
-  align-content: start; /* icons stick to top of screen */
+  align-content: start;                             
+  color: var(--text);
 }
+
 
 #app, .desktop {
   width: 100vw;
@@ -118,6 +126,24 @@ body::after {
     transparent 1px,
     transparent 3px
   );
+}
+
+/* App window fade + scale animation */
+.win-fade-enter-active,
+.win-fade-leave-active {
+  transition: all 0.3s ease;
+}
+
+.win-fade-enter-from,
+.win-fade-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.win-fade-enter-to,
+.win-fade-leave-from {
+  opacity: 1;
+  transform: scale(1);
 }
 </style>
 

@@ -15,19 +15,23 @@ defineEmits(['open'])
 
 <style scoped>
 .desktop-icon {
-  display: inline-block;
-  width: 80px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;   
   font-size: 14px;
   cursor: pointer;
   user-select: none;
-  margin: 1rem;
 }
+
 .desktop-icon img {
-  width: 48px;
-  height: 48px;
+  width: 64px;     
+  height: 64px;    
   margin-bottom: 4px;
+  image-rendering: pixelated; 
 }
+
 </style>
 
 

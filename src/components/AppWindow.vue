@@ -23,12 +23,13 @@ defineEmits(['close'])
 
 <style scoped>
 .win-window {
-  display: inline-block;
+  position: absolute;
   border: 2px solid #000080;
   background: var(--window);
-  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #888;
   padding: 2px;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #888;
 }
+
 .win-titlebar {
   height: 26px;
   background: var(--window);
