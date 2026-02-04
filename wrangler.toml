@@ -1,8 +1,10 @@
 name = "vuevi"
-main = "worker.js"  # entry point for your Worker code
 compatibility_date = "2026-02-04"
 
-# Assets directory for your built Vue app
+# This is the entry point for your Worker; Wrangler will create workers-site automatically
+main = "workers-site/index.js"
+
+# Directory with your built Vue app
 [site]
 bucket = "./dist"
-entry-point = "workers-site"
+
