@@ -107,7 +107,6 @@ function close(app: keyof typeof openApps.value) {
   transform: scale(0) translate(var(--icon-x, 0), var(--icon-y, 0));
 }
 
-/* Optional CRT scanlines */
 body::after {
   content: "";
   pointer-events: none;

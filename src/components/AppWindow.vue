@@ -32,9 +32,9 @@ function handleClose() {
   position: absolute;
   top: 50px;
   left: 50px;
-  width: auto;          /* auto width */
-  max-width: 90vw;      /* optional: prevent it from going off-screen */
-  min-width: 200px;     /* optional: don't get too small */
+  width: auto;          
+  max-width: 90vw;      
+  min-width: 200px;     
   padding: 2px;
   border: 2px solid #000080;
   background: var(--window);
