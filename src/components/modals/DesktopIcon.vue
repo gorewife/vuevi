@@ -37,10 +37,7 @@ function handleClick() {
   width: 64px;
   height: 64px;
   margin-bottom: 4px;
-  image-rendering: pixelated; /* keeps retro CRT look */
+  image-rendering: pixelated;
+  /* keeps retro CRT look */
 }
 </style>
-
-
-
-

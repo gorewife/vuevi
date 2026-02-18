@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppWindow from './AppWindow.vue'
+import AppWindow from '@/components/modals/AppWindow.vue'
 </script>
 
 <template>

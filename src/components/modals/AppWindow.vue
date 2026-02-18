@@ -32,15 +32,15 @@ function handleClose() {
   position: absolute;
   top: 50px;
   left: 50px;
-  width: auto;          
-  max-width: 90vw;      
-  min-width: 20vw;     
+  width: auto;
+  max-width: 90vw;
+  min-width: 20vw;
   padding: 6px;
   border: 6px solid #000080;
   background: var(--window);
   box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.4),
-              inset 1px 1px 0 white, 
-              inset -1px -1px 0 black;
+    inset 1px 1px 0 white,
+    inset -1px -1px 0 black;
   font-family: 'VT323', monospace;
   display: inline-block;
   box-sizing: border-box;
@@ -54,10 +54,10 @@ function handleClose() {
   justify-content: space-between;
   padding: 2px 4px;
   border: 2px solid #000080;
-  
+
   margin: 2px;
   width: calc(100% - 4px);
-  box-sizing: border-box;   
+  box-sizing: border-box;
 }
 
 
@@ -88,5 +88,3 @@ function handleClose() {
   background: var(--window);
 }
 </style>
-
-

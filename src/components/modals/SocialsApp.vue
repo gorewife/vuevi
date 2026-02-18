@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppWindow from './AppWindow.vue'
+import AppWindow from '@/components/modals/AppWindow.vue'
 
 import TikTokIcon from '../assets/tiktok.png'
 import TwitterIcon from '../assets/twitter.png'
@@ -30,7 +30,8 @@ import InstagramIcon from '../assets/instagram.png'
 }
 
 .social-icon {
-  width: 40px; /* adjust size */
+  width: 40px;
+  /* adjust size */
   height: 40px;
 }
 </style>
