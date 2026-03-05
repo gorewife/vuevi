@@ -48,6 +48,7 @@ function close(app: keyof typeof openApps.value) {
 
 <style scoped>
 .desktop {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(5, 80px);
   grid-auto-rows: 80px;
