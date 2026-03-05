@@ -14,9 +14,9 @@ const props = defineProps<{
 defineEmits<{ (e: 'close'): void }>()
 
 const cosplays = [
-  { src: viv1, name: 'Ame-chan' },
-  { src: viv2, name: 'Ame-chan' },
-  { src: viv3, name: 'Ame-chan' },
+  { src: viv1, name: 'me' },
+  { src: viv2, name: 'me' },
+  { src: viv3, name: 'ame-chan' },
 ]
 </script>
 
@@ -38,6 +38,7 @@ const cosplays = [
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   padding: 4px;
+  min-width: 480px;
 }
 
 .photo-frame {

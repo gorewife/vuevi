@@ -127,6 +127,12 @@ function handleResizeStart(event: MouseEvent) {
   border: 1px solid #000;
   box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #555;
   cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+.win-controls span:hover {
+  background: #cc0000;
+  box-shadow: inset 1px 1px 0 #ff7777, inset -1px -1px 0 #660000;
 }
 
 .win-content {

@@ -3,15 +3,21 @@ import DesktopIcon from '@/components/windows/DesktopIcon.vue'
 import AboutMeApp from '@/components/windows/AboutMeApp.vue'
 import GalleryApp from '@/components/windows/GalleryApp.vue'
 import SocialsApp from '@/components/windows/SocialsApp.vue'
+import { onMounted } from 'vue'
 import { useWindowStore } from '@/stores/windowStore'
 
 import heartIcon from '@/assets/heart.png'
 import paperIcon from '@/assets/paper.png'
 import chessIcon from '@/assets/chess.png'
 
-// useWindowStore() returns the same singleton every time it's called,
-// so any component can read/write shared window state without prop drilling.
 const store = useWindowStore()
+
+// Open all windows when the page first loads so they animate in together.
+onMounted(() => {
+  store.open('aboutMe')
+  store.open('gallery')
+  store.open('socials')
+})
 </script>
 
 <template>
@@ -25,18 +31,18 @@ const store = useWindowStore()
          the desktop's overflow:hidden and can float over the whole viewport. -->
     <Teleport to="body">
       <Transition name="win-pop">
-        <AboutMeApp v-if="store.isOpen('aboutMe')" window-id="aboutMe" @close="store.close('aboutMe')" :initial-x="300"
-          :initial-y="120" />
+        <AboutMeApp v-if="store.isOpen('aboutMe')" window-id="aboutMe"
+          @close="store.close('aboutMe')" :initial-x="40" :initial-y="80" />
       </Transition>
 
       <Transition name="win-pop">
-        <GalleryApp v-if="store.isOpen('gallery')" window-id="gallery" @close="store.close('gallery')" :initial-x="80"
-          :initial-y="80" />
+        <GalleryApp v-if="store.isOpen('gallery')" window-id="gallery"
+          @close="store.close('gallery')" :initial-x="340" :initial-y="60" />
       </Transition>
 
       <Transition name="win-pop">
-        <SocialsApp v-if="store.isOpen('socials')" window-id="socials" @close="store.close('socials')" :initial-x="650"
-          :initial-y="80" />
+        <SocialsApp v-if="store.isOpen('socials')" window-id="socials"
+          @close="store.close('socials')" :initial-x="870" :initial-y="80" />
       </Transition>
     </Teleport>
   </div>

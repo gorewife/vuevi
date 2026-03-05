@@ -19,27 +19,32 @@ import Desktop from '@/components/Desktop.vue'
 
 /* global animation stays global */
 .win-pop-enter-active {
-  transition: transform 0.15s ease-out;
+  transition: transform 0.4s ease-out, opacity 0.3s ease-out;
+  transition-delay: 0.15s;
 }
 
 .win-pop-leave-active {
-  transition: transform 0.15s ease-in;
+  transition: transform 0.2s ease-in, opacity 0.2s ease-in;
 }
 
 .win-pop-enter-from {
   transform: scale(0) translate(var(--icon-x, 0), var(--icon-y, 0));
+  opacity: 0;
 }
 
 .win-pop-enter-to {
   transform: scale(1) translate(0, 0);
+  opacity: 1;
 }
 
 .win-pop-leave-from {
   transform: scale(1) translate(0, 0);
+  opacity: 1;
 }
 
 .win-pop-leave-to {
   transform: scale(0) translate(var(--icon-x, 0), var(--icon-y, 0));
+  opacity: 0;
 }
 
 body::after {
