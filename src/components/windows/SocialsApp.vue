@@ -9,13 +9,15 @@ const props = defineProps<{
 
 defineEmits<{ (e: 'close'): void }>()
 
+import chessIcon from '@/assets/chess.png'
 import TikTokIcon from '@/assets/tiktok.png'
 import TwitterIcon from '@/assets/twitter.png'
 import InstagramIcon from '@/assets/instagram.png'
 </script>
 
 <template>
-  <AppWindow title="LINKS.EXE" :window-id="props.windowId" :initial-x="props.initialX" :initial-y="props.initialY" @close="$emit('close')">
+  <AppWindow title="LINKS.EXE" :icon="chessIcon" :window-id="props.windowId" :initial-x="props.initialX"
+    :initial-y="props.initialY" @close="$emit('close')">
     <div class="social-links">
       <a href="https://www.tiktok.com/@cradlemybody" target="_blank">
         <img :src="TikTokIcon" alt="TikTok" class="social-icon" />
@@ -39,7 +41,6 @@ import InstagramIcon from '@/assets/instagram.png'
 
 .social-icon {
   width: 40px;
-  /* adjust size */
   height: 40px;
 }
 </style>

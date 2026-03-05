@@ -25,18 +25,18 @@ const store = useWindowStore()
          the desktop's overflow:hidden and can float over the whole viewport. -->
     <Teleport to="body">
       <Transition name="win-pop">
-        <AboutMeApp v-if="store.isOpen('aboutMe')" window-id="aboutMe"
-          @close="store.close('aboutMe')" :initial-x="300" :initial-y="120" />
+        <AboutMeApp v-if="store.isOpen('aboutMe')" window-id="aboutMe" @close="store.close('aboutMe')" :initial-x="300"
+          :initial-y="120" />
       </Transition>
 
       <Transition name="win-pop">
-        <GalleryApp v-if="store.isOpen('gallery')" window-id="gallery"
-          @close="store.close('gallery')" :initial-x="80" :initial-y="80" />
+        <GalleryApp v-if="store.isOpen('gallery')" window-id="gallery" @close="store.close('gallery')" :initial-x="80"
+          :initial-y="80" />
       </Transition>
 
       <Transition name="win-pop">
-        <SocialsApp v-if="store.isOpen('socials')" window-id="socials"
-          @close="store.close('socials')" :initial-x="650" :initial-y="80" />
+        <SocialsApp v-if="store.isOpen('socials')" window-id="socials" @close="store.close('socials')" :initial-x="650"
+          :initial-y="80" />
       </Transition>
     </Teleport>
   </div>
@@ -44,6 +44,8 @@ const store = useWindowStore()
 
 <style scoped>
 .desktop {
+  font-family: 'VT323', monospace;
+
   position: relative;
   display: grid;
   grid-template-columns: repeat(5, 80px);

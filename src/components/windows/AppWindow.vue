@@ -7,6 +7,7 @@ import { useWindowStore } from '@/stores/windowStore'
 const props = defineProps<{
   title: string
   windowId: string
+  icon?: string
   initialX?: number
   initialY?: number
 }>()
@@ -41,8 +42,11 @@ function handleResizeStart(event: MouseEvent) {
 
 <template>
   <div class="win-window" ref="windowEl" :style="windowStyle" @mousedown="store.bringToFront(windowId)">
-    <div class="win-titlebar" @mousedown.stop="startDrag">
-      <span class="win-title">{{ title }}</span>
+    <div class="win-titlebar" @mousedown="startDrag">
+      <div class="win-title-group">
+        <img v-if="icon" :src="icon" class="win-icon" alt="" />
+        <span class="win-title">{{ title }}</span>
+      </div>
       <div class="win-controls" @mousedown.stop>
         <span @click="emit('close')"></span>
       </div>
@@ -90,6 +94,19 @@ function handleResizeStart(event: MouseEvent) {
 
 .win-titlebar:active {
   cursor: grabbing;
+}
+
+.win-title-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.win-icon {
+  width: 16px;
+  height: 16px;
+  image-rendering: pixelated;
+  flex-shrink: 0;
 }
 
 .win-title {

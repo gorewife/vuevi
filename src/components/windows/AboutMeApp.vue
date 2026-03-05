@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AppWindow from '@/components/windows/AppWindow.vue'
+import heartIcon from '@/assets/heart.png'
 
 const props = defineProps<{
   windowId: string
@@ -11,7 +12,7 @@ defineEmits<{ (e: 'close'): void }>()
 </script>
 
 <template>
-  <AppWindow title="ABOUTME.EXE" :window-id="props.windowId" :initial-x="props.initialX" :initial-y="props.initialY"
+  <AppWindow title="ABOUTME.EXE" :icon="heartIcon" :window-id="props.windowId" :initial-x="props.initialX" :initial-y="props.initialY"
     @close="$emit('close')">
     <img src="@/assets/vivi.gif" alt="pfp">
     <dl class="info">
