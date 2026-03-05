@@ -11,10 +11,37 @@ defineEmits<{ (e: 'close'): void }>()
 </script>
 
 <template>
-  <AppWindow title="ABOUTME.EXE" :window-id="props.windowId" :initial-x="props.initialX" :initial-y="props.initialY" @close="$emit('close')">
-    <h1 class="glitch" data-text="ABOUT ME">ABOUT ME</h1>
+  <AppWindow title="ABOUTME.EXE" :window-id="props.windowId" :initial-x="props.initialX" :initial-y="props.initialY"
+    @close="$emit('close')">
     <img src="@/assets/vivi.gif" alt="pfp">
-    <p>vivi</p>
-    <p>18</p>
+    <dl class="info">
+      <dt>name</dt>
+      <dd>vivi</dd>
+      <dt>age</dt>
+      <dd>18</dd>
+      <dt>location</dt>
+      <dd>australia</dd>
+      <dt>pronouns</dt>
+      <dd>she/her</dd>
+    </dl>
   </AppWindow>
 </template>
+
+<style scoped>
+.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 12px;
+  margin: 0;
+}
+
+dt {
+  font-weight: bold;
+  text-align: right;
+  opacity: 0.6;
+}
+
+dd {
+  margin: 0;
+}
+</style>
