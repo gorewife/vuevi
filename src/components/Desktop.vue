@@ -6,9 +6,9 @@ import AboutMeApp from '@/components/modals/AboutMeApp.vue'
 import GalleryApp from '@/components/modals/GalleryApp.vue'
 import SocialsApp from '@/components/modals/SocialsApp.vue'
 
-import heartIcon from '../assets/heart.png'
-import paperIcon from '../assets/paper.png'
-import chessIcon from '../assets/chess.png'
+import heartIcon from '@/assets/heart.png'
+import paperIcon from '@/assets/paper.png'
+import chessIcon from '@/assets/chess.png'
 
 const openApps = ref({
   aboutMe: false,

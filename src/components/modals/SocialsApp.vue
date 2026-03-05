@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import AppWindow from '@/components/modals/AppWindow.vue'
 
-import TikTokIcon from '../assets/tiktok.png'
-import TwitterIcon from '../assets/twitter.png'
-import InstagramIcon from '../assets/instagram.png'
+import TikTokIcon from '@/assets/tiktok.png'
+import TwitterIcon from '@/assets/twitter.png'
+import InstagramIcon from '@/assets/instagram.png'
 </script>
 
 <template>
