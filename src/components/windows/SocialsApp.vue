@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppWindow from '@/components/modals/AppWindow.vue'
+import AppWindow from '@/components/windows/AppWindow.vue'
 
 const props = defineProps<{
   initialX?: number

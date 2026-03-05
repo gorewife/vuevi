@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import DesktopIcon from '@/components/modals/DesktopIcon.vue'
-import AboutMeApp from '@/components/modals/AboutMeApp.vue'
-import GalleryApp from '@/components/modals/GalleryApp.vue'
-import SocialsApp from '@/components/modals/SocialsApp.vue'
+import DesktopIcon from '@/components/windows/DesktopIcon.vue'
+import AboutMeApp from '@/components/windows/AboutMeApp.vue'
+import GalleryApp from '@/components/windows/GalleryApp.vue'
+import SocialsApp from '@/components/windows/SocialsApp.vue'
 
 import heartIcon from '@/assets/heart.png'
 import paperIcon from '@/assets/paper.png'
