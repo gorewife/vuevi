@@ -156,4 +156,31 @@ function handleResizeStart(event: MouseEvent) {
   border-color: transparent transparent var(--accent) transparent;
   cursor: se-resize;
 }
+
+@media (max-width: 768px) {
+  .win-window {
+    /* Override the inline position:fixed/left/top set by Vue's :style binding.
+       !important is one of the few cases where it's the right tool —
+       inline styles can't be beaten any other way. */
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: unset !important;
+    height: auto !important;
+    margin-bottom: 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  .win-titlebar {
+    cursor: default;
+  }
+
+  .win-titlebar:active {
+    cursor: default;
+  }
+
+  .win-resize-handle {
+    display: none;
+  }
+}
 </style>

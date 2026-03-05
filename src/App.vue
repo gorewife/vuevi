@@ -47,6 +47,13 @@ import Desktop from '@/components/Desktop.vue'
   opacity: 0;
 }
 
+@media (max-width: 768px) {
+  body {
+    padding: 8px;
+    box-sizing: border-box;
+  }
+}
+
 body::after {
   content: "";
   pointer-events: none;

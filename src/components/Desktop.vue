@@ -73,4 +73,20 @@ onMounted(() => {
   overflow: hidden;
   border: 2px solid #8087f0;
 }
+
+@media (max-width: 768px) {
+  .desktop {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: unset;
+    height: auto;
+    margin: 0 0 8px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    overflow: visible;
+    border-left: none;
+    border-right: none;
+  }
+}
 </style>
