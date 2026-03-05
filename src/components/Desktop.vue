@@ -33,17 +33,15 @@ function close(app: keyof typeof openApps.value) {
     <DesktopIcon label="Socials" :icon="chessIcon" @open="open('socials')" />
 
     <Transition name="win-pop">
-      <AboutMeApp v-if="openApps.aboutMe" @close="close('aboutMe')"
-        :style="{ top: 'calc(50% - 150px)', left: 'calc(50% - 200px)' }" />
+      <AboutMeApp v-if="openApps.aboutMe" @close="close('aboutMe')" :initial-x="160" :initial-y="80" />
     </Transition>
 
     <Transition name="win-pop">
-      <GalleryApp v-if="openApps.gallery" @close="close('gallery')" :style="{ top: '100px', left: '80px' }" />
+      <GalleryApp v-if="openApps.gallery" @close="close('gallery')" :initial-x="60" :initial-y="100" />
     </Transition>
 
     <Transition name="win-pop">
-      <SocialsApp v-if="openApps.socials" @close="close('socials')"
-        :style="{ top: '120px', left: 'calc(100% - 320px)' }" />
+      <SocialsApp v-if="openApps.socials" @close="close('socials')" :initial-x="380" :initial-y="100" />
     </Transition>
   </div>
 </template>
