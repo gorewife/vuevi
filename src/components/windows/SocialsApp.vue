@@ -2,10 +2,12 @@
 import AppWindow from '@/components/windows/AppWindow.vue'
 
 const props = defineProps<{
+  windowId: string
   initialX?: number
   initialY?: number
 }>()
 
+defineEmits<{ (e: 'close'): void }>()
 
 import TikTokIcon from '@/assets/tiktok.png'
 import TwitterIcon from '@/assets/twitter.png'
@@ -13,7 +15,7 @@ import InstagramIcon from '@/assets/instagram.png'
 </script>
 
 <template>
-  <AppWindow title="LINKS.EXE" :initial-x="props.initialX" :initial-y="props.initialY" @close="$emit('close')">
+  <AppWindow title="LINKS.EXE" :window-id="props.windowId" :initial-x="props.initialX" :initial-y="props.initialY" @close="$emit('close')">
     <div class="social-links">
       <a href="https://www.tiktok.com/@cradlemybody" target="_blank">
         <img :src="TikTokIcon" alt="TikTok" class="social-icon" />

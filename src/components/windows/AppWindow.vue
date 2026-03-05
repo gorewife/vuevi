@@ -2,9 +2,11 @@
 import { ref, computed } from 'vue'
 import { useDraggable } from '@/composables/useDraggable'
 import { useResizable } from '@/composables/useResizable'
+import { useWindowStore } from '@/stores/windowStore'
 
 const props = defineProps<{
   title: string
+  windowId: string
   initialX?: number
   initialY?: number
 }>()
@@ -13,14 +15,19 @@ const emit = defineEmits<{
   (e: 'close'): void
 }>()
 
+// Calling useWindowStore() anywhere gives you the same singleton instance,
+// that's the whole point of a store vs a plain composable.
+const store = useWindowStore()
+
 const windowEl = ref<HTMLElement | null>(null)
 
-const { x, y, startDrag } = useDraggable(props.initialX ?? 50, props.initialY ?? 50)
+const { x, y, startDrag } = useDraggable(props.initialX ?? 100, props.initialY ?? 100)
 const { width, height, startResize } = useResizable()
 
 const windowStyle = computed(() => ({
   left: `${x.value}px`,
   top: `${y.value}px`,
+  zIndex: store.zIndexOf(props.windowId),
   ...(width.value !== null ? { width: `${width.value}px` } : {}),
   ...(height.value !== null ? { height: `${height.value}px` } : {}),
 }))
@@ -33,8 +40,8 @@ function handleResizeStart(event: MouseEvent) {
 </script>
 
 <template>
-  <div class="win-window" ref="windowEl" :style="windowStyle">
-    <div class="win-titlebar" @mousedown="startDrag">
+  <div class="win-window" ref="windowEl" :style="windowStyle" @mousedown="store.bringToFront(windowId)">
+    <div class="win-titlebar" @mousedown.stop="startDrag">
       <span class="win-title">{{ title }}</span>
       <div class="win-controls" @mousedown.stop>
         <span @click="emit('close')"></span>
@@ -49,12 +56,12 @@ function handleResizeStart(event: MouseEvent) {
 
 <style scoped>
 .win-window {
-  position: absolute;
+  position: fixed;
   width: auto;
   max-width: 90vw;
   min-width: 20vw;
   padding: 6px;
-  border: 6px solid #000080;
+  border: 6px solid var(--accent);
   background: var(--window);
   box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.4),
     inset 1px 1px 0 white,
@@ -73,7 +80,7 @@ function handleResizeStart(event: MouseEvent) {
   align-items: center;
   justify-content: space-between;
   padding: 2px 4px;
-  border: 2px solid #000080;
+  border: 2px solid var(--accent);
   margin: 2px;
   width: calc(100% - 4px);
   box-sizing: border-box;
@@ -123,7 +130,7 @@ function handleResizeStart(event: MouseEvent) {
   height: 0;
   border-style: solid;
   border-width: 0 0 12px 12px;
-  border-color: transparent transparent #000080 transparent;
+  border-color: transparent transparent var(--accent) transparent;
   cursor: se-resize;
 }
 </style>

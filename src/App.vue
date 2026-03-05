@@ -14,6 +14,7 @@ import Desktop from '@/components/Desktop.vue'
   --cyan: #b2ccf1;
   --purple: #9e71c7;
   --text: #000;
+  --accent: #000080;
 }
 
 /* global animation stays global */
