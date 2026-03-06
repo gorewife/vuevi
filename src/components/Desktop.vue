@@ -31,18 +31,18 @@ onMounted(() => {
          the desktop's overflow:hidden and can float over the whole viewport. -->
     <Teleport to="body">
       <Transition name="win-pop">
-        <AboutMeApp v-if="store.isOpen('aboutMe')" window-id="aboutMe"
-          @close="store.close('aboutMe')" :initial-x="40" :initial-y="80" />
+        <AboutMeApp v-if="store.isOpen('aboutMe')" window-id="aboutMe" @close="store.close('aboutMe')" :initial-x="40"
+          :initial-y="200" />
       </Transition>
 
       <Transition name="win-pop">
-        <GalleryApp v-if="store.isOpen('gallery')" window-id="gallery"
-          @close="store.close('gallery')" :initial-x="340" :initial-y="60" />
+        <GalleryApp v-if="store.isOpen('gallery')" window-id="gallery" @close="store.close('gallery')"
+          :initial-x="560" :initial-y="275" />
       </Transition>
 
       <Transition name="win-pop">
-        <SocialsApp v-if="store.isOpen('socials')" window-id="socials"
-          @close="store.close('socials')" :initial-x="870" :initial-y="80" />
+        <SocialsApp v-if="store.isOpen('socials')" window-id="socials" @close="store.close('socials')" :initial-x="870"
+          :initial-y="100" />
       </Transition>
     </Teleport>
   </div>
